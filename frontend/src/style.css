@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.infor{
+display:flex ;
+justify-content: end;
+gap: 10px;
+padding: 15px;
+background-color: rgb(60, 58, 58);
+box-shadow: 2px 2px 2px #6a4343;
+
+}
+
+a{
+    text-decoration: none;
+    color: rgba(202, 62, 62, 0.682);
+
+}
+
+body{
+    font-family: 'Cabin', sans-serif;
+
+}
