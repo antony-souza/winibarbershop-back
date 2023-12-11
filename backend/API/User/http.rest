@@ -1,0 +1,16 @@
+GET http://localhost:8100/showitens
+
+###
+
+POST http://localhost:8100/createUser
+content-type: application/json
+
+{
+    "name":"Antony",
+    "email":"antony23@hotmail.com",
+    "password":"123"
+}
+
+###
+
+DELETE  http://localhost:8100/delete/6576f172c7e8bec97bc54256
