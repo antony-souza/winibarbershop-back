@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { UserSchema } from '../../schema/userSchema';  
+import {userModel } from '../../schema/userSchema';  
 
 export function ValidationUser(req: Request, res: Response, next: NextFunction) {
     const { name, email, password } = req.body;
@@ -24,7 +24,7 @@ export function ValidationUser(req: Request, res: Response, next: NextFunction) 
 export async function CheckUser(req: Request, res: Response, next: NextFunction){
     const {email} = req.body;
     
-    const emailFind = await UserSchema.findOne({email:email})
+    const emailFind = await userModel.findOne({email:email})
 
     if(emailFind){
         return res.status(422).json({ msg: 'User exist' });
@@ -37,7 +37,7 @@ export async function CreateUser(req: Request, res: Response){
 
     const salt = await bcrypt.genSalt(15)
     const passHash = await bcrypt.hash(password, salt)
-    const user = new UserSchema({name, email, password:passHash})
+    const user = new userModel({name, email, password:passHash})
 
     try{
         await user.save();
