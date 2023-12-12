@@ -25,3 +25,14 @@ body{
     font-family: 'Cabin', sans-serif;
 
 }
+
+.tela{
+background-image: 100%;
+background-size: cover;
+height: 130vh;
+
+
+}
+.log{
+    background-color: rgb(0, 0, 0, 0.8);
+}
