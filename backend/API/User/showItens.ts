@@ -1,9 +1,9 @@
 import { Request,Response } from 'express'
-import { UserSchema } from "../../schema/userSchema";
+import { userModel } from "../../schema/userSchema";
 
-export async function ListItens(req:Request, res:Response) {
+export async function showItens(req:Request, res:Response) {
     try{
-        const itens = await UserSchema.find()
+        const itens = await userModel.find()
         res.status(200).json({itens})
 
 
