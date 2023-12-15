@@ -18,7 +18,6 @@ export function ValidationUser(req: Request, res: Response, next: NextFunction) 
         res.status(404).json({msg:'The passowrd is require'})
     }
     next()
-    
 }
 
 export async function CheckUser(req: Request, res: Response, next: NextFunction){
@@ -27,7 +26,7 @@ export async function CheckUser(req: Request, res: Response, next: NextFunction)
     const emailFind = await userModel.findOne({email:email})
 
     if(emailFind){
-        return res.status(422).json({ msg: 'User exist' });
+        return res.status(420).json({msg: 'User exist'});
     }
     next()
 }
@@ -41,7 +40,7 @@ export async function CreateUser(req: Request, res: Response){
 
     try{
         await user.save();
-        res.status(201).json({ msg: 'User create successfully!' });
+        res.status(201).json({msg: 'User create successfully!'});
     }catch(err){
         console.error(err)
     }
