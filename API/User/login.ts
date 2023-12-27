@@ -23,11 +23,11 @@ export async function CheckLogin(req: Request, res: Response, next: NextFunction
             return res.status(401).json({ msg: 'Invalid email or password' });
         }
 
-        res.status(200).json({msg:'Deu bom fml :)'})
+        res.status(200).json({success:true,msg:'Deu bom fml :)'})
         next();
 
     } catch (error) {
         console.error('Error in CheckLogin:', error);
-        return res.status(500).json({ msg: 'Internal Server Error' });
+        return res.status(500).json({success:false, msg: 'Internal Server Error' });
     }
 }
