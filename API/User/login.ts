@@ -1,6 +1,7 @@
 import { userModel } from "../../schema/userSchema";
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken'
 
 export async function CheckLogin(req: Request, res: Response, next: NextFunction) {
     try {
@@ -22,6 +23,11 @@ export async function CheckLogin(req: Request, res: Response, next: NextFunction
         if (!passwordHash) {
             return res.status(401).json({ msg: 'Invalid email or password' });
         }
+
+        try{
+            const secreat = process.env.SECREAT
+            const token =  jwt.sign({})
+        }catch{}
 
         res.status(200).json({success:true,msg:'Deu bom fml :)'})
         next();
