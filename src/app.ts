@@ -2,9 +2,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express'
 import { DataBase } from '../db/mongooseDB';
-import { port, portMsg } from '../variables/variablesGlobal';
+
 import { errorHandler } from '../API/User/error';
 import router from '../router/router';
+import { port, portMsg } from './variables/variablesGlobal';
 dotenv.config()
 DataBase()
 
