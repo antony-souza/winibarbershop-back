@@ -6,7 +6,7 @@ dotenv.config()
 export async function DataBase(){
     
     try{
-        await mongoose.connect(mongoDB)
+        await mongoose.connect(String(mongoDB))
         console.log('MongoDB connected!')
 
     }catch(err){
