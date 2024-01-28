@@ -1,21 +1,19 @@
-import nodemailer from 'nodemailer'
-import dotenv from 'dotenv'
-dotenv.config()
+import { Request, Response } from "express";
+import { Resend } from "resend";
 
-const transportador = nodemailer.createTransport({
-   host: 'smtp.gmail.com',
-   service: 'gmail',
-   auth: {
-    user:process.env.EMAIL,
-    pass:process.env.PASS
-   }
-})
+const resend = new Resend(process.env.TOKEN_RESEND);
 
-const sendEmail = {
-    from: process.env.EMAIL,
-    to: 'antony.nunes@proton.me',
-    subject: 'Test de envio',
-    text: 'Hello World, email!'
-}
-
-transportador.sendMail(sendEmail)
+export async function sendMail(req:Request, res:Response) {
+    const { data, error } = await resend.emails.send({
+        from: "antonygustavo10202016@gmail.com",
+        to: ["antony.nunes@proton.me"],
+        subject: "Um belo teste",
+        html: "<strong>Deu certo mermão!!</strong>",
+      });
+    
+      if (error) {
+        return res.status(400).json({ error });
+      }
+    
+      res.status(200).json({ data });
+    }
