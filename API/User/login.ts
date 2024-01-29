@@ -1,6 +1,7 @@
-import { userModel } from "../../schema/userSchema";
+import { User } from "../../schema/userSchema";
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
+import { createToken } from "../../JWT/createToken";
 
 export async function CheckLogin(req: Request, res: Response, next: NextFunction) {
     
@@ -11,7 +12,7 @@ export async function CheckLogin(req: Request, res: Response, next: NextFunction
             return res.status(400).json({ msg: 'Email and password are required' });
         }
 
-        const existingUser = await userModel.findOne({ email });
+        const existingUser = await User.findOne({ email });
 
         if (!existingUser) {
             return res.status(401).json({ msg: 'Invalid email or password' });
@@ -23,6 +24,7 @@ export async function CheckLogin(req: Request, res: Response, next: NextFunction
         if (!passwordHash) {
             return res.status(401).json({ msg: 'Invalid email or password' });
         }
+        await createToken(existingUser)
 
         res.status(200).json({success:true,msg:'Deu bom fml :)'})
         next();

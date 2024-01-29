@@ -4,11 +4,13 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.TOKEN_RESEND);
 
 export async function sendMail(req:Request, res:Response) {
+  
     const { data, error } = await resend.emails.send({
-        from: "antonygustavo10202016@gmail.com",
-        to: ["antony.nunes@proton.me"],
-        subject: "Um belo teste",
-        html: "<strong>Deu certo mermão!!</strong>",
+        from: "Barbershop <onboarding@resend.dev>",
+        to: ["antonygustavo10202016@gmail.com"],
+        subject: "Token - Redefinir Senha",
+        html: `<strong>Copie o TOKEN e cole na caixa vazia para uma nova senha!</strong><p>Token:</p>`
+        ,
       });
     
       if (error) {

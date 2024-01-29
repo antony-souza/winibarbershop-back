@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { userModel } from '../../schema/userSchema';
+import { User } from '../../schema/userSchema';
 
 export async function userUpdate(req: Request, res: Response) {
   const { id } = req.params;
@@ -7,7 +7,7 @@ export async function userUpdate(req: Request, res: Response) {
 
   try {
 
-    const updatedUser = await userModel.findByIdAndUpdate(id, newData, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(id, newData, { new: true });
 
     if (updatedUser) {
       res.status(200).json({ message: 'User update successfully!', user: updatedUser });
