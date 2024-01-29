@@ -15,5 +15,6 @@ router.post('/users/createUser', ValidationUser,CheckUser,CreateUser);
 router.put('/users/update/:id', userUpdate);
 router.delete('/users/delete/:id',userDelete);
 router.post('/users/reset', sendMail,);
+router.get('/data',verifyToken)
 
 export default router;
