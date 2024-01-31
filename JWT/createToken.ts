@@ -8,8 +8,8 @@ export function createToken(user: IUser): string{
         name: user.name,
         email: user.email,
         password: user.password,
-        id: user._id
-    }, secreat);
+        id: user._id,
+    }, secreat,{expiresIn:'10m'});
 
     return token;
 }

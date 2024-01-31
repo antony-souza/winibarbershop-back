@@ -15,8 +15,8 @@ import jwt from 'jsonwebtoken'
     }
 
     try {
-    const verified = jwt.verify(token, secret)
-    req.user = verified
+    const compareJwt = jwt.verify(token, secret)
+    req.user = compareJwt
     next()
 
     } catch(err) {
