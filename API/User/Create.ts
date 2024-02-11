@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import {User } from '../../schema/userSchema';  
-import { createToken } from '../../JWT/createToken';
 
 export function ValidationUser(req: Request, res: Response, next: NextFunction) {
     const { name, email, password } = req.body;
@@ -41,8 +39,7 @@ export async function CreateUser(req: Request, res: Response){
 
     try{
         await user.save();
-        const token = createToken(user)
-        res.status(201).json({msg: 'User create successfully!', token:token});
+        res.status(201).json({msg: 'User create successfully!'});
     }catch(err){
         console.error(err)
     }

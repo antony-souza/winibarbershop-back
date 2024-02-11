@@ -1,9 +1,8 @@
 import { User } from "../../schema/userSchema";
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { createToken } from "../../JWT/createToken";
 
-export async function CheckLogin(req: Request, res: Response, next: NextFunction) {
+export async function CheckLogin(req: Request, res: Response) {
     
     try {
         const { email, password } = req.body;
@@ -24,13 +23,12 @@ export async function CheckLogin(req: Request, res: Response, next: NextFunction
         if (!passwordHash) {
             return res.status(401).json({ msg: 'Invalid email or password' });
         }
-        await createToken(existingUser)
 
-        res.status(200).json({success:true,msg:'Deu bom fml :)'})
-        next();
 
+        res.status(200).json({ success: true, msg: 'Login successful' });
+        
     } catch (error) {
         console.error('Error in CheckLogin:', error);
-        return res.status(500).json({success:false, msg: 'Internal Server Error' });
+        return res.status(500).json({ success: false, msg: 'Internal Server Error' });
     }
 }
