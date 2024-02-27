@@ -1,9 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
-import {User } from '../../schema/userSchema';  
+import { User } from '../../schema/userSchema';  
+import { tokenCreate } from './tokenCreate';
+
 
 export function ValidationUser(req: Request, res: Response, next: NextFunction) {
     const { name, email, password } = req.body;
+
 
     if(!name){
         res.status(404).json({msg:'The name is require'})
@@ -38,8 +41,11 @@ export async function CreateUser(req: Request, res: Response){
     const user = new User({name, email, password:passHash})
 
     try{
+    
         await user.save();
+
         res.status(201).json({msg: 'User create successfully!'});
+
     }catch(err){
         console.error(err)
     }

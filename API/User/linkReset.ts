@@ -34,7 +34,6 @@ export async function sendMail(req: Request, res: Response, next: NextFunction) 
             return res.status(400).json({ error });
         }
 
-        // Chamada do next() aqui, após o envio bem-sucedido do e-mail
         next();
 
         res.status(200).json({ success: true, code: code, data, Date });
