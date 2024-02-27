@@ -34,11 +34,11 @@ export async function CheckUser(req: Request, res: Response, next: NextFunction)
 }
 
 export async function CreateUser(req: Request, res: Response){
-    const {name, email, password} = req.body;
+    const {name, email, password, isAdmin} = req.body;
 
     const salt = await bcrypt.genSalt(15)
     const passHash = await bcrypt.hash(password, salt)
-    const user = new User({name, email, password:passHash})
+    const user = new User({name, email, password:passHash, isAdmin})
 
     try{
     

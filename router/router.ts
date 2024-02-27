@@ -8,7 +8,7 @@ import { newPass } from "../API/User/newPass";
 import { sendMail } from "../API/User/linkReset";
 import { codeMail } from "../API/User/codeEmail";
 import { authenticateToken } from "../middleware/authenticateToken";
-import { GetUserAuth } from "../API/User/controllers/getUserController";
+import { GetUserAuth } from "../API/controllers/getUserController";
 
 
 const router = Router();

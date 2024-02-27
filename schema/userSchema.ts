@@ -9,6 +9,7 @@ export interface IUser {
     codeExpiration: Date;
     newPassword: string;
     newPasswordConfirm: string;
+    isAdmin:boolean;
 }
 
 const userSchema = new Schema<IUser>({
@@ -19,6 +20,7 @@ const userSchema = new Schema<IUser>({
     codeExpiration: { type: Date},
     newPassword: { type: String},
     newPasswordConfirm: { type: String},
+    isAdmin: { type: Boolean, default: false }
 });
 
 export const User = model<IUser>('User', userSchema);

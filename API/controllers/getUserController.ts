@@ -1,6 +1,6 @@
 export const GetUserAuth = async (req, res) => {
     try {
-        const user = req.user; // Aqui você acessa o usuário autenticado
+        const user = req.user; // Consigo pegar o usuário autenticado 
         if (!user) {
             return res.status(401).json({ success: false, message: 'Usuário não autenticado' });
         }
