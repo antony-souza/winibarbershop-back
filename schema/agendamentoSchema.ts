@@ -1,17 +1,17 @@
-import {Schema, model } from "mongoose"
+import { Schema, model, Types } from "mongoose";
+import { IUser } from "./userSchema";
 
-export interface IAgendamentos {
-    cliente: string,
-    barbeiro: string
+export interface IAgendamento {
+    cliente: Types.ObjectId | IUser, // Referência ao ID do cliente associado ao agendamento
+    barbeiro: string,
     dataHour: Date,
 };
 
-const barberSchema = new Schema<IAgendamentos>({
-    cliente: {type: String, required: true},
-    barbeiro:{type:String, required:true},
-    dataHour: {type: Date ,required:true}
+const agendamentoSchema = new Schema<IAgendamento>({
+    cliente: { type: Schema.Types.ObjectId, ref: 'User', required: true }, // O campo cliente é uma referência ao ID do usuário
+    barbeiro: { type: String, required: true },
+    dataHour: { type: Date, required: true }
 });
 
-export const AgendamentoWinicius = model<IAgendamentos>('AgendamentoWinicius', barberSchema);
-export const AgendamentoJoão = model<IAgendamentos>('AgendamentoJoão', barberSchema);
-
+export const AgendamentoWinicius = model<IAgendamento>('AgendamentoWinicius', agendamentoSchema);
+export const AgendamentoJoao = model<IAgendamento>('AgendamentoJoao', agendamentoSchema);

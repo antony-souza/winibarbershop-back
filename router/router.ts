@@ -23,6 +23,6 @@ router.delete('/users/delete/:id',userDelete);
 router.post('/users/reset/email', sendMail);
 router.put('/users/reset/newpassword/',newPass);
 router.post('/users/reset/code/', codeMail);
-router.post('/agendar', Agendar);
+router.post('/agendar',Agendar);
 
 export default router

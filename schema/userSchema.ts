@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose, { Schema, Types, model } from "mongoose";
 
 export interface IUser {
     _id: string;
@@ -10,6 +10,7 @@ export interface IUser {
     newPassword: string;
     newPasswordConfirm: string;
     isAdmin:boolean;
+    agendamentos: Types.ObjectId[]
 }
 
 const userSchema = new Schema<IUser>({
@@ -20,7 +21,8 @@ const userSchema = new Schema<IUser>({
     codeExpiration: { type: Date},
     newPassword: { type: String},
     newPasswordConfirm: { type: String},
-    isAdmin: { type: Boolean, default: false }
+    isAdmin: { type: Boolean, default: false },
+    agendamentos: [{ type: Schema.Types.ObjectId, ref: 'Agendamento' }] // Referência aos IDs dos agendamentos
 });
 
 export const User = model<IUser>('User', userSchema);
