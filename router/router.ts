@@ -9,6 +9,7 @@ import { sendMail } from "../API/User/linkReset";
 import { codeMail } from "../API/User/codeEmail";
 import { authenticateToken } from "../middleware/authenticateToken";
 import { GetUserAuth } from "../API/controllers/getUserController";
+import { Agendar } from "../API/agendamentos/agentamento";
 
 
 const router = Router();
@@ -22,5 +23,6 @@ router.delete('/users/delete/:id',userDelete);
 router.post('/users/reset/email', sendMail);
 router.put('/users/reset/newpassword/',newPass);
 router.post('/users/reset/code/', codeMail);
+router.post('/agendar', Agendar);
 
 export default router
