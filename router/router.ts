@@ -11,6 +11,7 @@ import { authenticateToken } from "../middleware/authenticateToken";
 import { GetUserAuth } from "../API/controllers/getUserController";
 import { Schedule } from "../API/agendamentos/Schedule";
 import { showSchedule } from "../API/agendamentos/showSchedule";
+import { deleteSchedules } from "../API/agendamentos/deleteSchedule";
 
 
 const router = Router();
@@ -18,6 +19,7 @@ const router = Router();
 router.post('/users/auth', CheckLogin);
 router.get('/users/auth/gettoken',authenticateToken, GetUserAuth);
 router.post('/Schedule',authenticateToken,Schedule);
+router.delete('/delete/Schedule/:id',deleteSchedules);
 router.get('/showSchedule', showSchedule)
 router.get('/showUser', showItens);
 router.post('/users/createUser', ValidationUser,CheckUser,CreateUser);
