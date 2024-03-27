@@ -17,6 +17,6 @@ app.use(cors())
 
 app.use('/', router)
 
-app.listen(port,()=>{
+app.listen(port,() =>{
     console.log(portMsg)
 })

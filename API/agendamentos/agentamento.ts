@@ -1,26 +1,26 @@
-import { Request, Response } from "express";
-import { AgendamentoWinicius } from "../../schema/agendamentoSchema";
 import { authenticateToken } from "../../middleware/authenticateToken";
+import { Schedules } from "../../schema/userSchema";
 
-export async function Agendar(req, res) {
-    // Verifica o token JWT e extrai o ID do usuário
+export async function Schedule(req, res) {
+    // Verifica o token e extrai o ID e nome do usuário
     authenticateToken(req, res, async () => {
-        const userId = req.user.id;
+        const { id } = req.user; // ID e nome do usuário autenticado
 
-        const { dataHour, barbeiro } = req.body;
+        const {client, dateHour, employee } = req.body;
 
         try {
             // Cria o agendamento associado ao cliente logado
-            const novoAgendamentoWinicius = new AgendamentoWinicius({
-                cliente: userId,
-                barbeiro: barbeiro,
-                dataHour: dataHour,
+            const newSchedule = new Schedules({
+                userId: id, // ID do usuário
+                client: client, // Nome do usuário
+                employee: employee,
+                dateHour: dateHour,
             });
 
-            const agendamentoSalvoWinicius = await novoAgendamentoWinicius.save();
+            const saveSchedule = await newSchedule.save();
 
             res.status(201).json({
-                agendamentoWinicius: agendamentoSalvoWinicius,
+                Schedule: saveSchedule,
             });
         } catch (error) {
             console.error("Erro ao criar agendamento:", error);

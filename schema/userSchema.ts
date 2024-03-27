@@ -1,5 +1,7 @@
-import mongoose, { Schema, Types, model } from "mongoose";
+import { Db } from "mongodb";
+import mongoose, { Schema, model } from "mongoose";
 
+// Definição do esquema para usuário
 export interface IUser {
     _id: string;
     name: string;
@@ -10,9 +12,17 @@ export interface IUser {
     newPassword: string;
     newPasswordConfirm: string;
     isAdmin:boolean;
-    agendamentos: Types.ObjectId[]
 }
 
+// Definição do esquema para agendamento
+export interface ISchedule {
+    userId: string | mongoose.Types.ObjectId, // Referência ao ID do usuário
+    client: string,
+    employee: string,
+    dateHour: Date
+};
+
+// Esquema do usuário
 const userSchema = new Schema<IUser>({
     name: { type: String, required: true},
     email: { type: String, required: true },
@@ -22,7 +32,18 @@ const userSchema = new Schema<IUser>({
     newPassword: { type: String},
     newPasswordConfirm: { type: String},
     isAdmin: { type: Boolean, default: false },
-    agendamentos: [{ type: Schema.Types.ObjectId, ref: 'Agendamento' }] // Referência aos IDs dos agendamentos
 });
 
+// Esquema do agendamento
+const ScheduleSchema = new Schema<ISchedule>({
+    userId: { type: Schema.Types.ObjectId, ref: 'User'},
+    client:{type: String, require: true},
+    employee: { type: String, required: true },
+    dateHour: { type: Date, required: true }
+});
+
+// Modelo do usuário
 export const User = model<IUser>('User', userSchema);
+
+// Modelo do agendamento
+export const Schedules = model<ISchedule>('Schedule', ScheduleSchema);
