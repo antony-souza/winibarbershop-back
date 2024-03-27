@@ -13,9 +13,6 @@ export function tokenCreate(user: IUser): string {
             
         },
         secret,
-        {
-            expiresIn: '1h',
-        }
     );
 
     return token;

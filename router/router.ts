@@ -9,15 +9,17 @@ import { sendMail } from "../API/User/linkReset";
 import { codeMail } from "../API/User/codeEmail";
 import { authenticateToken } from "../middleware/authenticateToken";
 import { GetUserAuth } from "../API/controllers/getUserController";
-import { Schedule } from "../API/agendamentos/agentamento";
+import { Schedule } from "../API/agendamentos/Schedule";
+import { showSchedule } from "../API/agendamentos/showSchedule";
 
 
 const router = Router();
 
 router.post('/users/auth', CheckLogin);
 router.get('/users/auth/gettoken',authenticateToken, GetUserAuth);
-router.post('/agendar',authenticateToken,Schedule);
-router.get('/users/showitens', showItens);
+router.post('/Schedule',authenticateToken,Schedule);
+router.get('/showSchedule', showSchedule)
+router.get('/showUser', showItens);
 router.post('/users/createUser', ValidationUser,CheckUser,CreateUser);
 router.put('/users/update/:id', userUpdate);
 router.delete('/users/delete/:id',userDelete);
