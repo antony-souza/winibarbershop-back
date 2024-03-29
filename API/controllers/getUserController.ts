@@ -8,7 +8,7 @@ export async function GetUserAuth(req, res) {
         if (!user) {
             return res.status(401).json({ success: false, message: 'Usuário não autenticado' });
         }
-        res.status(200).json({ success: true, user: { id: user._id, name: user.name } });
+        res.status(200).json({ success: true, user: { id: user._id, client: user.name } });
     } catch (err) {
         console.error('Error in GetUserAuth:', err);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

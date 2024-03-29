@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { mongoDB } from './variableDB';
 
 dotenv.config()
 
 export async function DataBase(){
     
     try{
-        await mongoose.connect(mongoDB);
+      
+        await mongoose.connect(process.env.MONGO as string);
 
         console.log('MongoDB connected!')
 
