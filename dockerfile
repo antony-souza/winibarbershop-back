@@ -1,14 +1,9 @@
-FROM node:alpine
+FROM ubuntu:latest
 
-WORKDIR /usr/app
+RUN apt-get update && apt-get install -y git
 
-COPY package*.json ./
+WORKDIR /app
 
-RUN npm install
+RUN git clone https://github.com/antony-souza/winibarbershop-back.git
 
-COPY . .
-
-EXPOSE 8100
-ENV PORT=8100
-
-CMD ["npm", "start"]
+CMD ["/bin/bash"]

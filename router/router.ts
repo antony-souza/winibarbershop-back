@@ -16,17 +16,17 @@ import { deleteSchedules } from "../API/agendamentos/deleteSchedule";
 
 const router = Router();
 
-router.post('/users/auth', CheckLogin);
-router.get('/users/auth/gettoken',authenticateToken, GetUserAuth);
+router.post('/auth', CheckLogin);
+router.get('/gettoken',authenticateToken, GetUserAuth);
 router.post('/Schedule',authenticateToken,Schedule);
 router.delete('/delete/Schedule/:id',deleteSchedules);
 router.get('/showSchedule', showSchedule)
 router.get('/showUser', showItens);
-router.post('/users/createUser', ValidationUser,CheckUser,CreateUser);
-router.put('/users/update/:id', userUpdate);
-router.delete('/users/delete/:id',userDelete);
-router.post('/users/reset/email', sendMail);
-router.put('/users/reset/newpassword/',newPass);
-router.post('/users/reset/code/', codeMail);
+router.post('/createUser', ValidationUser,CheckUser,CreateUser);
+router.put('/update/:id', userUpdate);
+router.delete('/delete/:id',userDelete);
+router.post('/reset/email', sendMail);
+router.put('/reset/newpassword',newPass);
+router.post('/reset/code', codeMail);
 
 export default router
