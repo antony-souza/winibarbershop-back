@@ -8,7 +8,7 @@ export function authenticateToken(req, res, next) {
         return res.status(401).json({ msg: 'Token não fornecido' });
     }
 
-    jwt.verify(token, process.env.SECRET, (err, user) => {
+    jwt.verify(token, process.env.SECRETT, (err, user) => {
         if (err) {
             return res.status(403).json({ msg: 'Falha na autenticação do token' });
         }

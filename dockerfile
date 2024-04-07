@@ -1,8 +1,8 @@
-FROM node:21.7.1
+FROM node:alpine
 
-WORKDIR /app
+WORKDIR /usr/app
 
-COPY package.json .
+COPY package.json ./
 
 RUN npm install
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 8100
 
-CMD ["node", "src/app.ts"]
+CMD ["npm", "start"]

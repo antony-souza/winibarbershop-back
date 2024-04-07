@@ -5,7 +5,7 @@ import { IUser } from '../../schema/userSchema';
 dotenv.config();
 
 export function tokenCreate(user: IUser): string {
-    const secret = process.env.SECRET;
+    const secret = process.env.SECRETT;
 
     const token = jwt.sign(
         {
