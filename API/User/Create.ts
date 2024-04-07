@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import { User } from '../../schema/userSchema';  
-import { tokenCreate } from './tokenCreate';
-
 
 export function ValidationUser(req: Request, res: Response, next: NextFunction) {
     const { name, email, password } = req.body;
