@@ -22,7 +22,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use('/', router);
-
+ 
 app.listen(process.env.PORT, () => {
   console.log('Conectado');
 });
