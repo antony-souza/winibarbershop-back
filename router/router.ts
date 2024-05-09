@@ -12,13 +12,15 @@ import { GetUserAuth } from "../API/controllers/getUserController";
 import { Schedule } from "../API/agendamentos/Schedule";
 import { showSchedule } from "../API/agendamentos/showSchedule";
 import { deleteSchedules } from "../API/agendamentos/deleteSchedule";
+import openaiAPI from "../API/GPT/main";
+
 
 
 const router = Router();
 
 router.post('/auth', CheckLogin);
 router.get('/gettoken',authenticateToken, GetUserAuth);
-router.post('/Schedule',authenticateToken,Schedule);
+router.post('/Schedule',Schedule);
 router.delete('/delete/Schedule/:id',deleteSchedules);
 router.get('/showSchedule', showSchedule)
 router.get('/showUser', showItens);
@@ -28,5 +30,6 @@ router.delete('/delete/:id',userDelete);
 router.post('/reset/email', sendMail);
 router.put('/reset/newpassword',newPass);
 router.post('/reset/code', codeMail);
+router.post('/v1/chat/completions',openaiAPI)
 
 export default router

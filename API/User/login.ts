@@ -16,7 +16,6 @@ export async function CheckLogin(req: Request, res: Response) {
         if (!existingUser) {
             return res.status(401).json({ msg: 'User not found!' });
         }
-
         
         const passwordHash = await bcrypt.compare(password, existingUser.password);
 

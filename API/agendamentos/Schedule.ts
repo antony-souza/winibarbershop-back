@@ -7,7 +7,7 @@ export async function Schedule(req, res) {
     authenticateToken(req, res, async () => {
         const { id } = req.user; 
 
-        const { client, dateHour, employee } = req.body;
+        const { client, dateHour, employee,haircut } = req.body;
 
         try {
             
@@ -17,7 +17,8 @@ export async function Schedule(req, res) {
                 userId: id,
                 client: client,
                 employee: employee,
-                dateHour: adjustedDateHour
+                dateHour: adjustedDateHour,
+                haircut: haircut
             });
 
             const saveSchedule = await newSchedule.save();
