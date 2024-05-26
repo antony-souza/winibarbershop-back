@@ -14,13 +14,11 @@ import { showSchedule } from "../API/agendamentos/showSchedule";
 import { deleteSchedules } from "../API/agendamentos/deleteSchedule";
 import openaiAPI from "../API/GPT/main";
 
-
-
 const router = Router();
 
 router.post('/auth', CheckLogin);
 router.get('/gettoken',authenticateToken, GetUserAuth);
-router.post('/Schedule',Schedule);
+router.post('/Schedule',authenticateToken);
 router.delete('/delete/Schedule/:id',deleteSchedules);
 router.get('/showSchedule', showSchedule)
 router.get('/showUser', showItens);

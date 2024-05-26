@@ -25,7 +25,7 @@ export async function CheckLogin(req: Request, res: Response) {
         
         const token = tokenCreate(existingUser);
         
-        res.status(200).json({ success: true, msg: 'Login successful', token });
+        res.status(200).json({ success: true, msg: 'Login successful', token:token,isAdmin:existingUser.isAdmin });
         
     } catch (error) {
         console.error('Error in CheckLogin:', error);
