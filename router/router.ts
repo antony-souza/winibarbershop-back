@@ -2,7 +2,7 @@ import { Router } from "express";
 import { CheckLogin } from "../API/User/login";
 import { userUpdate } from "../API/User/Update";
 import { userDelete } from '../API/User/Delete';
-import { showItens } from '../API/User/showItens';
+import { showUser } from '../API/User/showUser';
 import { CheckUser, CreateUser, ValidationUser } from '../API/User/Create';
 import { newPass } from "../API/User/newPass";
 import { sendMail } from "../API/User/linkReset";
@@ -18,10 +18,10 @@ const router = Router();
 
 router.post('/auth', CheckLogin);
 router.get('/gettoken',authenticateToken, GetUserAuth);
-router.post('/Schedule',authenticateToken);
+router.post('/Schedule',authenticateToken,Schedule);
+router.get('/admin/schedule', showSchedule)
 router.delete('/delete/Schedule/:id',deleteSchedules);
-router.get('/showSchedule', showSchedule)
-router.get('/showUser', showItens);
+router.get('/admin/users', showUser);
 router.post('/createUser', ValidationUser,CheckUser,CreateUser);
 router.put('/update/:id', userUpdate);
 router.delete('/delete/:id',userDelete);
