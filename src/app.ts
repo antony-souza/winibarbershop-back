@@ -25,5 +25,5 @@ app.use(cors(corsOptions));
 app.use('/', router);
  
 app.listen(process.env.PORT, () => {
-  console.log(`Conectado : https://18.116.241.241/:${process.env.PORT}`)
+  console.log('url conectada')
 });
