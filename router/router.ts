@@ -10,16 +10,16 @@ import { codeMail } from "../API/User/codeEmail";
 import { authenticateToken } from "../middleware/authenticateToken";
 import { GetUserAuth } from "../API/controllers/getUserController";
 import { Schedule } from "../API/agendamentos/Schedule";
-import { showSchedule } from "../API/agendamentos/showSchedule";
 import { deleteSchedules } from "../API/agendamentos/deleteSchedule";
 import openaiAPI from "../API/GPT/main";
+import { showSchedule } from "../API/agendamentos/showSchedule";
 
 const router = Router();
 
 router.post('/auth', CheckLogin);
 router.get('/gettoken',authenticateToken, GetUserAuth);
 router.post('/Schedule',authenticateToken,Schedule);
-router.get('/admin/schedule', showSchedule)
+router.get('/admin/schedule',showSchedule)
 router.delete('/delete/Schedule/:id',deleteSchedules);
 router.get('/admin/users', showUser);
 router.post('/createUser', ValidationUser,CheckUser,CreateUser);
