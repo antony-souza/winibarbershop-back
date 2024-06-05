@@ -14,16 +14,16 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(errorHandler);
 
-app.use(cors())
+/* app.use(cors()) */
 // midd para solicitações do dom vercel
-/* const corsOptions = {
-  origin:['https://winibarbershop.vercel.app','http://127.0.0.1:5500'],
+const corsOptions = {
+  origin:['https://winibarbershop.vercel.app'],
   optionsSuccessStatus: 200 
 };
-app.use(cors(corsOptions)); */
+app.use(cors(corsOptions));
 
 app.use('/', router);
  
 app.listen(process.env.PORT, () => {
-  console.log(`Conectado : http://localhost:${process.env.PORT}`)
+  console.log(`Conectado : https://18.116.241.241/:${process.env.PORT}`)
 });
