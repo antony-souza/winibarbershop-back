@@ -14,13 +14,9 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(errorHandler);
 
-/* app.use(cors()) */
-// midd para solicitações do dom vercel
-const corsOptions = {
-  origin:['https://winibarbershop.vercel.app'],
-  optionsSuccessStatus: 200 
-};
-app.use(cors(corsOptions));
+app.use(cors({
+  origin:["https://winibarbershop.vercel.app","http://127.0.0.1:5501"]
+})) 
 
 app.use('/', router);
  
