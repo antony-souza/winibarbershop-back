@@ -13,7 +13,6 @@ export async function showUser(req: Request, res: Response) {
             date:1,
             isAdmin:1
         };
-
     
         const users = await User.find(filters, projection);
         const clientList = users.map(item => ({

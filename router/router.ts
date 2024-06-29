@@ -5,7 +5,7 @@ import { userDelete } from '../API/User/Delete';
 import { showUser } from '../API/User/showUser';
 import { CheckUser, CreateUser, ValidationUser } from '../API/User/Create';
 import { newPass } from "../API/User/newPass";
-import { sendMail } from "../API/User/linkReset";
+import { sendEmail} from "../API/User/linkReset";
 import { codeMail } from "../API/User/codeEmail";
 import { authenticateToken } from "../middleware/authenticateToken";
 import { GetUserAuth } from "../API/controllers/getUserController";
@@ -25,7 +25,7 @@ router.get('/admin/users', showUser);
 router.post('/createUser', ValidationUser,CheckUser,CreateUser);
 router.put('/update/:id', userUpdate);
 router.delete('/delete/:id',userDelete);
-router.post('/reset/email', sendMail);
+router.post('/reset/email', sendEmail);
 router.put('/reset/newpassword',newPass);
 router.post('/reset/code', codeMail);
 router.post('/v1/chat/completions',openaiAPI)

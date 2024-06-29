@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { User } from '../../schema/userSchema';
-import { Resend } from 'resend';
+import { transporter } from '../../nodemailerConfig';
 
 export async function newPass(req: Request, res: Response) {
     const { newPassword, newPasswordConfirm } = req.body;
@@ -29,21 +29,20 @@ export async function newPass(req: Request, res: Response) {
         const updatedUser = await user.save();
 
         // Envio de email para notificar sobre a mudança de senha
-        const resend = new Resend(process.env.TOKEN_RESEND);
-        const { data, error } = await resend.emails.send({
-            from: "Barbershop <onboarding@resend.dev>",
+    
+        const configEmail= {
+            from: `Barbershop <${process.env.EMAIL}>`,
             to: ['antonygustavo10202016@gmail.com'],
             subject: "Nova Senha 🔐",
             html: `<h2>Senha alterada com sucesso! Sua nova senha:</h2>
             <h3>${newPassword}</h3>
             <h3>Não compartilhe com ninguém!</h3>`
-        });
+        };
+        console.log("Enviando email com a alteração:",configEmail)
+        await transporter.sendMail(configEmail)
 
-        if (error) {
-            return res.status(400).json({ error });
-        }
-
-        return res.status(200).json({ success: true, message: 'Senha do usuário atualizada com sucesso.', user: updatedUser, data });
+        console.log("Senha alterada com sucesso!");
+        return res.status(200).json({ success: true, message: 'Senha do usuário atualizada com sucesso.', user: updatedUser});
         
     } catch (error) {
         console.error('Erro ao atualizar a senha do usuário:', error);

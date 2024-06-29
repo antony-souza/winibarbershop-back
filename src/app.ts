@@ -5,6 +5,7 @@ import { DataBase } from '../db/mongooseDB';
 import { errorHandler } from '../API/User/error';
 import router from '../router/router';
 import bodyParser from 'body-parser';
+import nodemailer from 'nodemailer'
 
 dotenv.config();
 DataBase();
@@ -19,7 +20,7 @@ app.use(cors({
 })) 
 
 app.use('/', router);
- 
+
 app.listen(process.env.PORT, () => {
   console.log('url conectada')
 });

@@ -7,7 +7,7 @@ export interface IUser {
     password: string;
     code: string;
     codeExpiration: Date;
-    newPassword: string;
+    newPassword: string; 
     newPasswordConfirm: string;
     isAdmin:boolean;
 }

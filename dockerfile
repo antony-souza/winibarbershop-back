@@ -1,9 +1,18 @@
-FROM ubuntu:latest
+FROM ubuntu:lasted
 
-RUN apt-get update && apt-get install -y git && apt-get install npm
+WORKDIR /app
+
+RUN apt-get update && apt-get install git
 
 WORKDIR /app
 
 RUN git clone https://github.com/antony-souza/winibarbershop-back.git
 
-CMD ["/bin/bash"]
+WORKDIR /app/winibarbershop-back/
+
+RUN npm install
+
+EXPOSE 80
+EXPOSE 8100
+
+CMD ["npm","start"]
